@@ -1,47 +1,52 @@
-name := "mockito-macros"
+import sbtrelease.ReleasePlugin
 
-organization := "org.backuity"
+lazy val root = (project in file(".")).
+  settings(ReleasePlugin.releaseSettings : _*).
+  settings(
+    name := "mockito-macros",
 
-scalaVersion := "2.11.6"
+    organization := "org.backuity",
 
-homepage := Some(url("https://github.com/backuity/mockito-macros"))
+    scalaVersion := "2.11.6",
 
-licenses := Seq("Apache 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0.html"))
+    homepage := Some(url("https://github.com/backuity/mockito-macros")),
 
-scalacOptions ++= Seq("-deprecation", "-unchecked")
+    licenses := Seq("Apache 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0.html")),
 
-libraryDependencies ++= Seq(
-    "com.novocode"      %  "junit-interface" % "0.10"      % "test-internal",
-    "com.chuusai"       %% "shapeless"       % "2.2.2",
-    "org.scala-lang"    % "scala-reflect"    % scalaVersion.value,
-    "org.mockito"       % "mockito-core"     % "1.10.8",
-    "org.backuity"      %% "matchete"        % "1.11"      % "test",
-    "junit"             %  "junit"           % "4.10"      % "test")
+    scalacOptions ++= Seq("-deprecation", "-unchecked"),
 
-publishMavenStyle := true
+    libraryDependencies ++= Seq(
+        "com.chuusai"       %% "shapeless"       % "2.2.2",
+        "org.scala-lang"    % "scala-reflect"    % scalaVersion.value,
+        "org.mockito"       % "mockito-core"     % "1.10.8",
+        "com.novocode"      %  "junit-interface" % "0.10"      % "test",
+        "org.backuity"      %% "matchete"        % "1.11"      % "test",
+        "junit"             %  "junit"           % "4.10"      % "test"),
 
-publishTo := {
-  val nexus = "https://oss.sonatype.org/"
-  if (version.value.trim.endsWith("SNAPSHOT"))
-    Some("snapshots" at nexus + "content/repositories/snapshots")
-  else
-    Some("releases"  at nexus + "service/local/staging/deploy/maven2")
-}
+    publishMavenStyle := true,
 
-// replace publish by publishSigned
-//      publish := PgpKeys.publishSigned.value
+    publishTo := {
+      val nexus = "https://oss.sonatype.org/"
+      if (version.value.trim.endsWith("SNAPSHOT"))
+        Some("snapshots" at nexus + "content/repositories/snapshots")
+      else
+        Some("releases"  at nexus + "service/local/staging/deploy/maven2")
+    },
 
-pomIncludeRepository := { _ => false }
+    // replace publish by publishSigned
+    publish := PgpKeys.publishSigned.value,
 
-pomExtra :=
-  <scm>
-    <url>git@github.com:backuity/matchete.git</url>
-    <connection>scm:git:git@github.com:backuity/matchete.git</connection>
-  </scm>
-  <developers>
-    <developer>
-      <id>backuitist</id>
-      <name>Bruno Bieth</name>
-      <url>https://github.com/backuitist</url>
-    </developer>
-  </developers>
+    pomIncludeRepository := { _ => false },
+
+    pomExtra :=
+      <scm>
+        <url>git@github.com:backuity/matchete.git</url>
+        <connection>scm:git:git@github.com:backuity/matchete.git</connection>
+      </scm>
+      <developers>
+        <developer>
+          <id>backuitist</id>
+          <name>Bruno Bieth</name>
+          <url>https://github.com/backuitist</url>
+        </developer>
+      </developers>)
