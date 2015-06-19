@@ -40,8 +40,8 @@ lazy val root = (project in file(".")).
 
     pomExtra :=
       <scm>
-        <url>git@github.com:backuity/matchete.git</url>
-        <connection>scm:git:git@github.com:backuity/matchete.git</connection>
+        <url>git@github.com:backuity/mockito-macros.git</url>
+        <connection>scm:git:git@github.com:backuity/mockito-macros.git</connection>
       </scm>
       <developers>
         <developer>
