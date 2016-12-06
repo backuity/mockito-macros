@@ -7,7 +7,7 @@ lazy val root = (project in file(".")).
 
     organization := "org.backuity",
 
-    scalaVersion := "2.11.6",
+    scalaVersion := "2.12.1",
 
     homepage := Some(url("https://github.com/backuity/mockito-macros")),
 
@@ -16,11 +16,11 @@ lazy val root = (project in file(".")).
     scalacOptions ++= Seq("-deprecation", "-unchecked"),
 
     libraryDependencies ++= Seq(
-        "com.chuusai"       %% "shapeless"       % "2.2.2",
+        "com.chuusai"       %% "shapeless"       % "2.3.2",
         "org.scala-lang"    % "scala-reflect"    % scalaVersion.value,
         "org.mockito"       % "mockito-core"     % "1.10.8",
         "com.novocode"      %  "junit-interface" % "0.10"      % "test",
-        "org.backuity"      %% "matchete"        % "1.11"      % "test",
+        "org.backuity"      %% "matchete-junit"  % "1.28.0"      % "test",
         "junit"             %  "junit"           % "4.10"      % "test"),
 
     publishMavenStyle := true,
